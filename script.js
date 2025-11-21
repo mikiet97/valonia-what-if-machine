@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const periodHierarchy = {
         'present': [],
         '6months': ['6months'],
-        '1year': ['6months'],
-        '10years': ['6months']
+        '1year': ['6months', '1year'],
+        '10years': ['6months', '1year', '10years']
     };
     
     function updateContent(period) {
@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updatePageSubtitle(period) {
         const subtitle = document.querySelector('.subtitle');
         const subtitles = {
-            'present': 'From The What-If Machine',
-            '6months': 'From The What-If Machine - 6 Months from Now',
-            '1year': 'From The What-If Machine - 1 Year from Now',
-            '10years': 'From The What-If Machine - 10 Years from Now'
+            'present': 'From The What-If Machine - November 2025',
+            '6months': 'From The What-If Machine - May 2026',
+            '1year': 'From The What-If Machine - November 2026',
+            '10years': 'From The What-If Machine - November 2035'
         };
         
         if (subtitle) {

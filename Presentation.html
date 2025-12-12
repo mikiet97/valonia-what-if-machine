@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Better Biofactory - Valonia ventricosa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2f4a 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 22, 40, 0.95);
+            padding: 15px 30px;
+            z-index: 100;
+            border-bottom: 2px solid rgba(0, 212, 170, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 1.2em;
+            color: #00d4aa;
+            font-weight: 600;
+        }
+
+        .slide-counter {
+            font-size: 0.9em;
+            color: #a0b4cc;
+        }
+
+        .presentation-container {
+            position: absolute;
+            top: 60px;
+            left: 35%;
+            right: 0;
+            bottom: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            max-height: 700px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 0.9em;
+            color: #a0b4cc;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 12px;
+            border-radius: 15px;
+            z-index: 50;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .slide-subtitle {
+            font-size: 1.6em;
+            color: #00d4aa;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .slide-content {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #e0e8f0;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .slide-content p {
+            margin-bottom: 15px;
+        }
+
+        .slide-content ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .slide-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #00ffc8;
+            font-weight: 600;
+        }
+
+        .slide-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 15px;
+            margin: 15px auto;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid #00d4aa;
+        }
+
+        .team-member h4 {
+            color: #00d4aa;
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+
+        .team-member p {
+            font-size: 0.75em;
+            color: #a0b4cc;
+            line-height: 1.3;
+        }
+
+        .parallel-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .parallel-track {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 212, 170, 0.3);
+        }
+
+        .parallel-track h3 {
+            color: #00d4aa;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .parallel-track ul {
+            margin-left: 20px;
+        }
+
+        .parallel-track li {
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .lab-image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .lab-image-container img {
+            max-width: 80%;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 22, 40, 0.95);
+            padding: 20px 30px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid rgba(0, 212, 170, 0.3);
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.5);
+        }
+
+        .nav-button:disabled {
+            background: rgba(160, 180, 204, 0.3);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .progress-bar {
+            flex: 1;
+            margin: 0 30px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4aa 0%, #00a8ff 100%);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #a0b4cc;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .comparison-image {
+            max-width: 100%;
+            max-height: 240px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .size-comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+            align-items: flex-end;
+        }
+
+        .size-item {
+            text-align: center;
+        }
+
+        .size-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 8px;
+        }
+
+        .size-label {
+            font-size: 0.85em;
+            color: #a0b4cc;
+            line-height: 1.4;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px;
+            }
+
+            .slide-title {
+                font-size: 2.5em;
+            }
+
+            .slide-subtitle {
+                font-size: 1.5em;
+            }
+
+            .slide-content {
+                font-size: 1.1em;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+
+            .slide-title {
+                font-size: 2em;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">Building a Better Biofactory</div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">10</span>
+        </div>
+    </div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <div class="slide-number">1</div>
+            <div class="slide-title">Building a Better Biofactory</div>
+            <div style="text-align: center; margin: 30px 0 20px 0;">
+                <img src="20251118_195033.jpg" class="slide-image" style="max-height: 280px;">
+                <p class="image-caption"><i>Valonia ventricosa</i> - Nature's largest single-celled organism</p>
+            </div>
+            <div class="slide-content" style="text-align: center;">
+                <p style="font-size: 1.5em; margin-top: 20px; margin-bottom: 0;">What if we could use a <span class="highlight">massive algal cell</span> to revolutionize biotechnology and pharmaceuticals manufacturing?</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is your question? -->
+        <div class="slide">
+            <div class="slide-number">2</div>
+            <div class="slide-subtitle">1. What is your question?</div>
+            <div class="slide-content">
+                <p style="font-size: 1.8em; text-align: center; margin: 60px 0;">
+                    <span class="highlight">Can we build a better biofactory by using a massive algal cell?</span>
+                </p>
+                <div class="two-column" style="margin-top: 60px;">
+                    <div>
+                        <img src="Valonia_ventricosa_in_the_Red_Sea.jpg" class="comparison-image">
+                    </div>
+                    <div>
+                        <p>Specifically: Can <i>Valonia ventricosa</i> enable:</p>
+                        <ul>
+                            <li><span class="highlight">Microbial-like growing regimes</span></li>
+                            <li><span class="highlight">Easy handling and manipulation</span> due to large size</li>
+                            <li><span class="highlight">Powerful platform</span> for chemicals production</li>
+                            <li><span class="highlight">Mind blowing platform</span> for education</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Background -->
+        <div class="slide">
+            <div class="slide-number">3</div>
+            <div class="slide-subtitle">2. What background is absolutely necessary?</div>
+            <div class="slide-content">
+                <div style="margin-bottom: 15px;">
+                    <p><i>Valonia ventricosa</i> is the <span class="highlight">largest single-celled organism</span> on Earth:</p>
+                    <ul>
+                        <li>Size: <span class="highlight">1,000-10,000× bigger than traditional cells</span></li>
+                        <li>Found in tropical/subtropical oceans</li>
+                        <li>Grows like an aquarium weed - easy to culture?</li>
+                        <li>Eukaryotic (like us) - can produce complex molecules</li>
+                    </ul>
+                </div>
+                
+                <div class="size-comparison-grid" style="margin-top: 15px; margin-bottom: 20px;">
+                    <div class="size-item">
+                        <img src="Scanning-electron-micrograph-of-Escherichia-coli-grown-in-culture.png">
+                        <div class="size-label">
+                            <div><strong>E. coli</strong></div>
+                            <div style="color: #00d4aa; font-size: 1em; margin-top: 5px;">~2 μm</div>
+                        </div>
+                    </div>
+                    <div class="size-item">
+                        <img src="yeast_bacteria_size.webp">
+                        <div class="size-label">
+                            <div><strong>Yeast</strong></div>
+                            <div style="color: #00d4aa; font-size: 1em; margin-top: 5px;">~10 μm</div>
+                        </div>
+                    </div>
+                    <div class="size-item">
+                        <img src="ptk2exlarge12.jpg">
+                        <div class="size-label">
+                            <div><strong>HEK Cells</strong></div>
+                            <div style="color: #00d4aa; font-size: 1em; margin-top: 5px;">~20 μm</div>
+                        </div>
+                    </div>
+                    <div class="size-item">
+                        <img src="Cropped_micro_bubble_algae.png">
+                        <div class="size-label">
+                            <div><strong><i>Valonia</i></strong></div>
+                            <div style="color: #00d4aa; font-size: 1em; margin-top: 5px;">10 μm - 4 cm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Personal Excitement -->
+        <div class="slide">
+            <div class="slide-number">4</div>
+            <div class="slide-subtitle">3. Why are we personally excited?</div>
+            <div class="slide-content">
+                <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">
+                    The unprecedented size of <i>Valonia</i> opens new frontiers in biology:
+                </p>
+                
+                <div class="three-column" style="margin-top: 30px;">
+                    <div style="text-align: center;">
+                        <img src="Valonia_injection.png" style="max-width: 100%; max-height: 220px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        <h4 style="color: #00d4aa; margin-bottom: 8px; font-size: 1.1em;">💉 Direct Microinjection</h4>
+                        <p style="font-size: 0.95em; line-height: 1.4;">Inject DNA with a simple needle - no fancy equipment needed. You can see and manipulate cells with your hands.</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <img src="promo_x-series-2mm-tag.png" style="max-width: 100%; max-height: 220px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        <h4 style="color: #00d4aa; margin-bottom: 8px; font-size: 1.1em;">💻 Integrated Hardware</h4>
+                        <p style="font-size: 0.95em; line-height: 1.4;">Embed sensors and chips directly into cells. Monitor, control, and track biological production in real-time.</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <img src="Cropped_micro_bubble_algae.png" style="max-width: 100%; max-height: 220px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        <h4 style="color: #00d4aa; margin-bottom: 8px; font-size: 1.1em;">🧬 Understudied Giant</h4>
+                        <p style="font-size: 0.95em; line-height: 1.4;">Genome sequencing will shed light on this underappreciated organism. Pioneering new biology that's community lab accessible.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 30px; text-align: center; font-size: 1.1em;">
+                    <span class="highlight">No published genome</span> - we will be the first to sequence and characterize this remarkable giant cell
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Why Others Should Be Excited -->
+        <div class="slide">
+            <div class="slide-number">5</div>
+            <div class="slide-subtitle">4. Why should others be excited?</div>
+            <div class="slide-content">
+                <p style="text-align: center; font-size: 1.2em; margin-bottom: 25px;">
+                    <i>Valonia</i> makes biotechnology <span class="highlight">visible, accessible, and sustainable</span>
+                </p>
+
+                <div class="three-column" style="margin-top: 25px;">
+                    <div style="text-align: center; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <img src="/Users/michaeltaylor/Downloads/valonia_person_holding_in_hand.jpg" style="max-width: 100%; max-height: 140px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        <h4 style="color: #00d4aa; margin-bottom: 12px; font-size: 1.2em;">See Biology in Action</h4>
+                        <p style="font-size: 0.95em; line-height: 1.5;">Finally, a microorganism you can actually SEE with your own eyes. No microscopes needed - watch cells grow, inject DNA, observe genetic engineering in real-time.</p>
+                    </div>
+
+                    <div style="text-align: center; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <img src="Valonia_bioreactor.png" style="max-width: 100%; max-height: 140px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        <h4 style="color: #00d4aa; margin-bottom: 12px; font-size: 1.2em;">Clean & Green Production</h4>
+                        <p style="font-size: 0.95em; line-height: 1.5;">Replace harmful chemical manufacturing processes with photosynthesis-powered production. No toxic waste, no energy-intensive facilities - just sunlight and seawater.</p>
+                    </div>
+
+                    <div style="text-align: center; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <img src="/Users/michaeltaylor/Downloads/valonia_student_engineering.png" style="max-width: 100%; max-height: 140px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        <h4 style="color: #00d4aa; margin-bottom: 12px; font-size: 1.2em;">Educational Revolution</h4>
+                        <p style="font-size: 0.95em; line-height: 1.5;">Democratize biotechnology education. Students can perform real genetic engineering without expensive equipment. Community labs can do cutting-edge research.</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; font-size: 1.1em; margin-top: 30px; color: #a0b4cc;">
+                    Biotechnology shouldn't be invisible and inaccessible. <span class="highlight">Everyone</span> should be able to see and understand it.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Splat Space Lab -->
+        <div class="slide">
+            <div class="slide-number">6</div>
+            <div class="slide-subtitle">5. What is our plan?</div>
+            <div class="slide-content">
+                <div class="lab-image-container">
+                    <img src="communityspace_image.png" style="max-width: 70%; max-height: 250px;">
+                    <p class="image-caption">Splat Space Community Lab - Durham, NC</p>
+                </div>
+                
+                <p style="text-align: center; font-size: 1.3em; margin: 25px 0;">
+                    Led by <span class="highlight">Splat Space Community Lab</span>
+                </p>
+                
+                <p style="text-align: center; font-size: 1.1em; color: #a0b4cc;">
+                    A 501(c)(3) nonprofit makerspace in Durham, NC, dedicated to democratizing biotechnology and providing community access to advanced biotech tools and expertise.
+                </p>
+
+                <p style="text-align: center; font-size: 1em; color: #a0b4cc; margin-top: 15px;">
+                    <span class="highlight">Notable Spin-offs:</span> Splat Space has served as an incubator for successful biotechnology startups including <strong>Elysia Bio</strong> and <strong>East American Science</strong>.
+                </p>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <p style="font-size: 1.2em;"><span class="highlight">Our 12-Month Plan:</span></p>
+                    <p style="font-size: 1em; color: #a0b4cc; margin-top: 10px;">A parallel approach combining genomics, growth optimization, genetic engineering, and hardware integration</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Team -->
+        <div class="slide">
+            <div class="slide-number">7</div>
+            <div class="slide-subtitle">Our Research Team</div>
+            <div class="slide-content">
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="eli_headshot.jpg" alt="Eli Hornstein">
+                        <h4>Eli Hornstein</h4>
+                        <p>PhD Plant Biotechnology<br>CEO, Elysia Bio</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="tom_headshot.jpg" alt="Thomas Randall">
+                        <h4>Thomas Randall</h4>
+                        <p>PhD Microbiology<br>Co-founder, Splat Space</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="josh_headshot.png" alt="Josh McMenemy">
+                        <h4>Josh McMenemy</h4>
+                        <p>BS Bioengineering<br>Co-founder, East American Science</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="Michael_headshot.png" alt="Michael Taylor">
+                        <h4>Michael Taylor</h4>
+                        <p>BS Biology<br>Founding Engineer, Cypher Bio AI</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="JohnChristianGaby01.png" alt="Chris Gaby">
+                        <h4>Chris Gaby</h4>
+                        <p>PhD Microbiology<br>Cornell University</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="Dex_headshot.png" alt="Dex">
+                        <h4>Dex</h4>
+                        <p>BS Biotechnology<br>Research Contributor</p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; font-size: 1em;">
+                    <span class="highlight">Multidisciplinary expertise:</span> Plant biotech, microbiology, genetic engineering, enzyme assay development, and bioinformatics
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Months 1-6 Parallel Tracks -->
+        <div class="slide">
+            <div class="slide-number">8</div>
+            <div class="slide-subtitle">Months 1-6: Foundation Building</div>
+            <div class="slide-content">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span class="timeline-badge">Months 1-6</span>
+                </div>
+                
+                <div class="parallel-container">
+                    <div class="parallel-track">
+                        <h3>🧬 Genomic Sequencing</h3>
+                        <ul>
+                            <li><span class="highlight">Extract DNA</span> from multiple <i>Valonia</i> species sourced from UTEX</li>
+                            <li><span class="highlight">DNA and RNA sequencing</span> campaigns</li>
+                            <li><span class="highlight">Genome assembly</span> and annotation</li>
+                            <li><span class="highlight">Goal of identifying:</span>
+                                <ul style="margin-top: 8px;">
+                                    <li>Likely gene sequences</li>
+                                    <li>Regulatory elements</li>
+                                </ul>
+                            </li>
+                            <li><span class="highlight">Public database</span> submission and publishing</li>
+                        </ul>
+                    </div>
+
+                    <div class="parallel-track">
+                        <h3>🌱 Growth Optimization</h3>
+                        <ul>
+                            <li><span class="highlight">Test media compositions</span> for optimal growth
+                                <ul style="margin-top: 8px;">
+                                    <li>Light intensity and photoperiod optimization</li>
+                                    <li>Temperature and salinity ranges</li>
+                                </ul>
+                            </li>
+                            <li><span class="highlight">Growth rate</span> measurements</li>
+                            <li><span class="highlight">Scale-up protocols</span> for bioreactor culture</li>
+                            <li><span class="highlight">Contamination prevention</span> strategies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 20px; font-size: 1em; color: #a0b4cc;">
+                    <span class="highlight">Goal:</span> Complete genome sequence and optimized growth conditions by Month 6
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Months 7-12 Parallel Tracks -->
+        <div class="slide">
+            <div class="slide-number">9</div>
+            <div class="slide-subtitle">Months 7-12: Proof of Concept</div>
+            <div class="slide-content">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span class="timeline-badge">Months 7-12</span>
+                </div>
+                
+                <div class="parallel-container">
+                    <div class="parallel-track">
+                        <h3>🧬 Genetic Engineering PoC</h3>
+                        <ul>
+                            <li><span class="highlight">Design expression vectors</span> using analogous systems and genomic information</li>
+                            <li><span class="highlight">Physical injection</span> of plasmid DNA into cells</li>
+                            <li><span class="highlight">Express reporter proteins</span> (fluorescent proteins)</li>
+                            <li><span class="highlight">Demonstrate enzyme production</span> (proof of concept)</li>
+                            <li><span class="highlight">Improve production levels</span> via cofactor injection</li>
+                        </ul>
+                    </div>
+
+                    <div class="parallel-track">
+                        <h3>💻 Hardware Integration PoC</h3>
+                        <ul>
+                            <li><span class="highlight">Magnetic particle injection</span>
+                                <ul style="margin-top: 8px;">
+                                    <li>Biocompatible magnetic beads</li>
+                                    <li>External magnetic manipulation</li>
+                                    <li>Cell viability testing</li>
+                                </ul>
+                            </li>
+                            <li><span class="highlight">RFID chip integration</span>
+                                <ul style="margin-top: 8px;">
+                                    <li>Miniature RFID tags (2mm)</li>
+                                    <li>Injection into cytoplasm</li>
+                                    <li>Wireless identification/tracking</li>
+                                </ul>
+                            </li>
+                            <li><span class="highlight">Long-term viability</span> assessment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 20px; font-size: 1em; color: #a0b4cc;">
+                    <span class="highlight">Goal:</span> Demonstrate genetic transformation and hardware integration by Month 12
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Impact -->
+        <div class="slide">
+            <div class="slide-number">10</div>
+            <div class="slide-subtitle">6. How will this inform our understanding?</div>
+            <div class="slide-content">
+                <p style="font-size: 1.1em; margin-bottom: 15px; text-align: center;">
+                    This project will impact <span class="highlight">five critical areas</span>:
+                </p>
+                
+                <div style="margin: 15px 0;">
+                    <h3 style="color: #00d4aa; margin-bottom: 10px; font-size: 1.2em;">🔬 Fundamental Biology</h3>
+                    <ul>
+                        <li>How can a single cell grow so large?</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 15px 0;">
+                    <h3 style="color: #00d4aa; margin-bottom: 10px; font-size: 1.2em;">⚗️ Chemical Engineering</h3>
+                    <ul>
+                        <li>Replace harmful chemical processes with photosynthesis-powered biomanufacturing</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 15px 0;">
+                    <h3 style="color: #00d4aa; margin-bottom: 10px; font-size: 1.2em;">💊 Biotechnology</h3>
+                    <ul>
+                        <li>New and unique biotechnology chassis</li>
+                        <li>Direct manipulation techniques for large cells and rapid engineering</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 15px 0;">
+                    <h3 style="color: #00d4aa; margin-bottom: 10px; font-size: 1.2em;">🌊 Marine Health</h3>
+                    <ul>
+                        <li>Ocean and Aquarium monitoring & pollutants degradation</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 15px 0;">
+                    <h3 style="color: #00d4aa; margin-bottom: 10px; font-size: 1.2em;">🌍 Global Health</h3>
+                    <ul>
+                        <li>Agile biomanufacturing platform</li>
+                        <li>Simplified and sustainable medicines manufacturing platform</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; font-size: 1.1em; margin-top: 20px; margin-bottom: 0;">
+                    <span class="highlight">From a single cell to global impact</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button class="nav-button" id="prev-button" onclick="previousSlide()">Previous</button>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <button class="nav-button" id="next-button" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateSlide() {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Show current slide
+            slides[currentSlide].classList.add('active');
+            
+            // Update counter
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            
+            // Update button states
+            document.getElementById('prev-button').disabled = currentSlide === 0;
+            document.getElementById('next-button').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
+

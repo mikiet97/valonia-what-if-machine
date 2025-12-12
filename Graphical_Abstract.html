@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valonia Ventricosa - Graphical Abstract</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: #ffffff;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .abstract-container {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #1a4d2e;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .abstract-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 30px;
+            position: relative;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 25px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 350px;
+        }
+
+        .section-label {
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            background: #d32f2f;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            line-height: 1.3;
+        }
+
+        .section-visual {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .section-image {
+            max-width: 100%;
+            max-height: 220px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section A: Size Comparison with Images */
+        .size-comparison-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .small-cell-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .small-cell-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .large-cell-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .large-cell-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cell-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* Section B: DNA/Genome */
+        .genome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .genome-badge {
+            background: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border: 2px solid #333;
+            text-align: center;
+        }
+
+        .dna-illustration {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Section C: Injection - use actual image */
+        .injection-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Section D: Hardware - use actual images */
+        .hardware-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .chip-image {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section E: Future Directions */
+        .future-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .future-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 15px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .future-icon {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .future-label {
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* Section E spans full width */
+        .section-e {
+            grid-column: 1 / -1;
+            min-height: 220px;
+        }
+
+        .section-caption {
+            font-size: 0.85em;
+            color: #666;
+            text-align: center;
+            line-height: 1.4;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* DNA Helix SVG styling */
+        .dna-helix-svg {
+            width: 120px;
+            height: 160px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .abstract-container {
+                border: 2px solid #000;
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .abstract-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .section-e {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .abstract-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="abstract-container">
+        <h1 class="abstract-title">Valonia ventricosa: A Novel Platform for Biotechnology</h1>
+        
+        <div class="abstract-grid">
+            <!-- Section A: Largest Single Cell -->
+            <div class="section">
+                <div class="section-label">A</div>
+                <h3 class="section-title">Largest Single Cell<br>Understudied Organism</h3>
+                <div class="section-visual">
+                    <div class="size-comparison-container">
+                        <div class="small-cell-wrapper">
+                            <img src="ptk2exlarge12.jpg" alt="Typical mammalian cell" class="small-cell-img">
+                            <div class="cell-label">~10 μm<br>Typical Cell</div>
+                        </div>
+                        <div class="large-cell-wrapper">
+                            <img src="20251118_195033.jpg" alt="Valonia ventricosa" class="large-cell-img">
+                            <div class="cell-label">~40,000 μm<br><i>V. ventricosa</i></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="section-caption">One of nature's largest single cells - 4,000× larger than typical mammalian cells</p>
+            </div>
+
+            <!-- Section B: Genomic Sequencing -->
+            <div class="section">
+                <div class="section-label">B</div>
+                <h3 class="section-title">Genomic Sequencing<br>Completed</h3>
+                <div class="section-visual">
+                    <div class="genome-container">
+                        <svg class="dna-helix-svg" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left backbone -->
+                            <line x1="20" y1="10" x2="15" y2="150" stroke="#ff6b9d" stroke-width="4" stroke-linecap="round"/>
+                            <!-- Right backbone -->
+                            <line x1="100" y1="10" x2="105" y2="150" stroke="#ff6b9d" stroke-width="4" stroke-linecap="round"/>
+                            
+                            <!-- Base pairs -->
+                            <g transform="rotate(0 60 20)">
+                                <line x1="20" y1="20" x2="100" y2="20" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="20" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="20" r="4" fill="#1e90ff"/>
+                            </g>
+                            
+                            <g transform="rotate(30 60 40)">
+                                <line x1="20" y1="40" x2="100" y2="40" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="40" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="40" r="4" fill="#1e90ff"/>
+                            </g>
+                            
+                            <g transform="rotate(60 60 60)">
+                                <line x1="20" y1="60" x2="100" y2="60" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="60" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="60" r="4" fill="#1e90ff"/>
+                            </g>
+                            
+                            <g transform="rotate(90 60 80)">
+                                <line x1="20" y1="80" x2="100" y2="80" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="80" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="80" r="4" fill="#1e90ff"/>
+                            </g>
+                            
+                            <g transform="rotate(120 60 100)">
+                                <line x1="20" y1="100" x2="100" y2="100" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="100" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="100" r="4" fill="#1e90ff"/>
+                            </g>
+                            
+                            <g transform="rotate(150 60 120)">
+                                <line x1="20" y1="120" x2="100" y2="120" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="120" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="120" r="4" fill="#1e90ff"/>
+                            </g>
+                            
+                            <g transform="rotate(180 60 140)">
+                                <line x1="20" y1="140" x2="100" y2="140" stroke="#4169e1" stroke-width="3"/>
+                                <circle cx="20" cy="140" r="4" fill="#1e90ff"/>
+                                <circle cx="100" cy="140" r="4" fill="#1e90ff"/>
+                            </g>
+                        </svg>
+                        <div class="genome-badge">~145 Mbp | 12,847 Genes</div>
+                    </div>
+                </div>
+                <p class="section-caption">First complete genome sequences for <i>Valonia</i> genus (May 2026)</p>
+            </div>
+
+            <!-- Section C: Genetic Engineering -->
+            <div class="section">
+                <div class="section-label">C</div>
+                <h3 class="section-title">Genetic Engineering<br>Via Needle Injection</h3>
+                <div class="section-visual">
+                    <div class="injection-container">
+                        <img src="Valonia_injection.png" alt="Microinjection of Valonia ventricosa" class="section-image">
+                    </div>
+                </div>
+                <p class="section-caption">Direct microinjection of genetic constructs into accessible cytoplasm</p>
+            </div>
+
+            <!-- Section D: Hardware Integration -->
+            <div class="section">
+                <div class="section-label">D</div>
+                <h3 class="section-title">Hardware Integration<br>Demonstrated</h3>
+                <div class="section-visual">
+                    <div class="hardware-container">
+                        <img src="promo_x-series-2mm-tag.png" alt="2mm microchip" class="chip-image">
+                        <img src="microelectronics.webp" alt="Integrated microelectronics" class="section-image" style="max-height: 100px;">
+                    </div>
+                </div>
+                <p class="section-caption">2mm biocompatible chips enable communication and control</p>
+            </div>
+
+            <!-- Section E: Future Directions -->
+            <div class="section section-e">
+                <div class="section-label">E</div>
+                <h3 class="section-title">Future Directions</h3>
+                <div class="section-visual">
+                    <div class="future-grid">
+                        <div class="future-item">
+                            <div class="future-icon">💊</div>
+                            <div class="future-label">Distributed Pharmaceutical Production</div>
+                        </div>
+                        <div class="future-item">
+                            <div class="future-icon">🌊</div>
+                            <div class="future-label">Ocean Biochemistry Monitoring</div>
+                        </div>
+                        <div class="future-item">
+                            <div class="future-icon">📚</div>
+                            <div class="future-label">Educational Biotechnology Platform</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="section-caption">Sustainable, photosynthesis-powered biotechnology for global health and environmental applications</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

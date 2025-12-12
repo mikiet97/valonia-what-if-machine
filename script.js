@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const futureContents = document.querySelectorAll('.future-content');
     const futureTocItems = document.querySelectorAll('.future-toc');
     
+    // Highlighter state - starts on by default
+    let highlightingEnabled = true;
+    
     // Timeline period hierarchy (what content shows at each period)
     const periodHierarchy = {
         'present': [],
@@ -22,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
         allTalkPoints.forEach(point => {
             point.classList.remove('active');
         });
+        
+        // If highlighting is disabled, stop here
+        if (!highlightingEnabled) {
+            return;
+        }
         
         // Find the talk point that's currently in the trigger zone
         let bestMatch = null;
@@ -46,8 +54,16 @@ document.addEventListener('DOMContentLoaded', function() {
             let score = 0;
             const elementCenter = rect.top + (rect.height / 2);
             const distanceFromTrigger = Math.abs(elementCenter - triggerZone);
+
+            // Special check for the first talk point at the very top of the page
+            // Only apply this boost if the element is actually visible in the viewport
+            // AND we are very close to the top (e.g., < 20px scroll)
+            if (point === allTalkPoints[0] && window.scrollY < 20) {
+                // If we are at the very top of the page, give the first talk point a huge score boost
+                score = 1000; 
+            }
             
-            if (distanceFromTrigger <= triggerRange) {
+            else if (distanceFromTrigger <= triggerRange) {
                 // Element is near the trigger zone - prefer elements closer to center
                 score = triggerRange - distanceFromTrigger;
             } else if (rect.top <= triggerZone && rect.bottom >= triggerZone) {
@@ -234,5 +250,18 @@ document.addEventListener('DOMContentLoaded', function() {
     futureContents.forEach(content => {
         observer.observe(content, { attributes: true, attributeFilter: ['class'] });
     });
+    
+    // Highlighter Toggle
+    const highlighterToggle = document.getElementById('highlighterToggle');
+    if (highlighterToggle) {
+        // Set initial active state since highlighting is enabled by default
+        highlighterToggle.classList.add('active');
+        
+        highlighterToggle.addEventListener('click', function() {
+            highlightingEnabled = !highlightingEnabled;
+            this.classList.toggle('active', highlightingEnabled);
+            updateTalkPointHighlighting();
+        });
+    }
 });
 

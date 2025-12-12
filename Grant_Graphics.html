@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valonia Ventricosa - Grant Application Graphics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2f4a 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d4aa 0%, #00a8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #a0b4cc;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cards-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .card-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #00d4aa;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .card {
+            aspect-ratio: 4 / 5;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Card 1: The Giant Among Cells - Enhanced */
+        #card1 {
+            background: radial-gradient(circle at 30% 40%, #0a4d3c 0%, #004030 30%, #001a14 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ambient-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle-bg {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 255, 200, 0.3);
+            border-radius: 50%;
+            animation: particleDrift 8s ease-in-out infinite;
+        }
+
+        @keyframes particleDrift {
+            0%, 100% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translate(50px, -80px); opacity: 0; }
+        }
+
+        .p1 { top: 20%; left: 15%; animation-delay: 0s; }
+        .p2 { top: 40%; left: 70%; animation-delay: 2s; }
+        .p3 { top: 60%; left: 30%; animation-delay: 4s; }
+        .p4 { top: 70%; left: 80%; animation-delay: 1s; }
+        .p5 { top: 30%; left: 50%; animation-delay: 3s; }
+
+        .hand-container {
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        .hand-palm {
+            width: 140px;
+            height: 110px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25) 0%, 
+                rgba(200, 220, 240, 0.15) 50%, 
+                rgba(150, 180, 210, 0.1) 100%);
+            border-radius: 60% 60% 45% 45%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            box-shadow: 
+                inset 0 0 30px rgba(255, 255, 255, 0.1),
+                0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .finger-realistic {
+            position: absolute;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25) 0%, 
+                rgba(200, 220, 240, 0.15) 50%, 
+                rgba(150, 180, 210, 0.08) 100%);
+            border-radius: 12px 12px 8px 8px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                inset 0 0 15px rgba(255, 255, 255, 0.1),
+                0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .f1 { width: 28px; height: 70px; bottom: 100px; left: 12px; transform: rotate(-12deg); }
+        .f2 { width: 28px; height: 85px; bottom: 105px; left: 42px; transform: rotate(-4deg); }
+        .f3 { width: 28px; height: 90px; bottom: 105px; left: 72px; transform: rotate(4deg); }
+        .f4 { width: 28px; height: 75px; bottom: 100px; left: 102px; transform: rotate(12deg); }
+        .thumb-realistic { 
+            width: 34px; 
+            height: 58px; 
+            bottom: 55px; 
+            left: -18px; 
+            transform: rotate(-50deg);
+            border-radius: 15px 15px 10px 10px;
+        }
+
+        .giant-cell-enhanced {
+            width: 52%;
+            height: 42%;
+            background: radial-gradient(circle at 35% 35%, 
+                rgba(0, 255, 200, 0.9) 0%,
+                rgba(0, 230, 180, 0.7) 15%,
+                rgba(0, 200, 160, 0.5) 35%,
+                rgba(0, 150, 120, 0.3) 60%,
+                rgba(0, 100, 80, 0.1) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 
+                0 0 100px rgba(0, 255, 200, 0.6),
+                0 0 60px rgba(0, 255, 200, 0.4),
+                inset 0 0 80px rgba(0, 255, 200, 0.3),
+                inset -20px -20px 60px rgba(0, 200, 160, 0.4);
+            animation: cellPulse 4s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes cellPulse {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1); 
+                box-shadow: 
+                    0 0 100px rgba(0, 255, 200, 0.6),
+                    0 0 60px rgba(0, 255, 200, 0.4),
+                    inset 0 0 80px rgba(0, 255, 200, 0.3);
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.05); 
+                box-shadow: 
+                    0 0 120px rgba(0, 255, 200, 0.8),
+                    0 0 80px rgba(0, 255, 200, 0.6),
+                    inset 0 0 100px rgba(0, 255, 200, 0.4);
+            }
+        }
+
+        .cell-nucleus-enhanced {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #00ffe8 0%, #00d4c0 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 25px rgba(0, 255, 232, 0.9),
+                0 0 15px rgba(0, 255, 232, 0.6);
+            animation: nucleusFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes nucleusFloat {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(25px, -20px); }
+            50% { transform: translate(10px, 15px); }
+            75% { transform: translate(-20px, 10px); }
+        }
+
+        .n1 { top: 25%; left: 35%; animation-delay: 0s; }
+        .n2 { top: 45%; left: 55%; animation-delay: 1.3s; }
+        .n3 { top: 60%; left: 38%; animation-delay: 2.6s; }
+
+        .size-indicator-enhanced {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            font-weight: 300;
+            color: #00ffe8;
+            text-shadow: 
+                0 0 30px rgba(0, 255, 232, 0.8),
+                0 0 60px rgba(0, 255, 232, 0.4);
+            letter-spacing: 3px;
+            z-index: 20;
+        }
+
+        .scale-comparison {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .scale-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .scale-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .scale-bar {
+            height: 3px;
+            background: linear-gradient(90deg, #00ffc8 0%, #00d4aa 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+        }
+
+        .bar-small { width: 15px; }
+        .bar-large { width: 60px; }
+
+        /* Card 2: Biotechnology Platform - Enhanced */
+        #card2 {
+            background: radial-gradient(circle at 50% 50%, #1a3a52 0%, #0f2a3f 50%, #0a1520 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 168, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 168, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .platform-cell-enhanced {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 38% 38%,
+                rgba(0, 200, 255, 0.9) 0%,
+                rgba(0, 168, 255, 0.7) 20%,
+                rgba(0, 140, 220, 0.5) 40%,
+                rgba(0, 100, 180, 0.3) 60%,
+                rgba(0, 60, 130, 0.1) 80%,
+                transparent 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                0 0 100px rgba(0, 200, 255, 0.6),
+                0 0 60px rgba(0, 168, 255, 0.4),
+                inset 0 0 80px rgba(0, 200, 255, 0.3),
+                inset -25px -25px 70px rgba(0, 140, 220, 0.4);
+            animation: platformRotate 20s linear infinite;
+        }
+
+        @keyframes platformRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .energy-rings {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .energy-ring {
+            position: absolute;
+            border: 3px solid rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 20px rgba(0, 212, 255, 0.4),
+                inset 0 0 20px rgba(0, 212, 255, 0.2);
+            animation: ringExpand 4s ease-out infinite;
+        }
+
+        @keyframes ringExpand {
+            0% {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                opacity: 0.9;
+            }
+            100% {
+                width: 280%;
+                height: 280%;
+                top: -90%;
+                left: -90%;
+                opacity: 0;
+            }
+        }
+
+        .er1 { animation-delay: 0s; }
+        .er2 { animation-delay: 1.3s; }
+        .er3 { animation-delay: 2.6s; }
+
+        .platform-core {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(0, 200, 255, 0.2) 50%, 
+                transparent 100%);
+            border-radius: 50%;
+            animation: coreGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes coreGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .tech-text {
+            margin-top: 50px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .tech-text h3 {
+            font-size: 1.3em;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+        }
+
+        .tech-text p {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Card 3: Engineer on Demand - Enhanced */
+        #card3 {
+            background: radial-gradient(circle at 50% 60%, #2d1b4e 0%, #1f1438 50%, #0f0a1e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dna-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        .dna-strand-bg {
+            position: absolute;
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, #ff6b9d 0%, #c44569 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.5);
+            animation: dnaFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes dnaFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.8; }
+        }
+
+        .ds1 { top: 15%; left: 20%; animation-delay: 0s; }
+        .ds2 { top: 70%; left: 15%; animation-delay: 2s; }
+        .ds3 { top: 40%; right: 18%; animation-delay: 4s; }
+
+        .target-cell-enhanced {
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle at 40% 40%,
+                rgba(160, 100, 255, 0.8) 0%,
+                rgba(139, 69, 255, 0.6) 25%,
+                rgba(120, 50, 220, 0.4) 50%,
+                rgba(90, 30, 180, 0.2) 75%,
+                transparent 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                0 0 80px rgba(139, 69, 255, 0.6),
+                0 0 40px rgba(139, 69, 255, 0.4),
+                inset 0 0 60px rgba(139, 69, 255, 0.3);
+            animation: targetPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes targetPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .injection-point {
+            position: absolute;
+            top: 20%;
+            right: 15%;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ff6b9d 0%, transparent 70%);
+            border-radius: 50%;
+            animation: injectionGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes injectionGlow {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(2); }
+        }
+
+        .syringe-enhanced {
+            position: absolute;
+            top: -5%;
+            right: -5%;
+            width: 140px;
+            height: 140px;
+            transform: rotate(-45deg);
+            animation: injectMotion 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes injectMotion {
+            0%, 100% { transform: rotate(-45deg) translateY(0); }
+            50% { transform: rotate(-45deg) translateY(25px); }
+        }
+
+        .syringe-body {
+            width: 38px;
+            height: 95px;
+            background: linear-gradient(90deg, 
+                rgba(220, 240, 255, 0.4) 0%, 
+                rgba(180, 220, 255, 0.6) 50%, 
+                rgba(220, 240, 255, 0.4) 100%);
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            position: relative;
+            margin-left: 40px;
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.3),
+                0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .liquid-dna {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            right: 5px;
+            height: 60%;
+            background: linear-gradient(180deg, 
+                rgba(255, 107, 157, 0.8) 0%, 
+                rgba(196, 69, 105, 0.9) 100%);
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+        }
+
+        .plunger-enhanced {
+            width: 26px;
+            height: 50px;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.7) 0%, 
+                rgba(200, 200, 200, 0.5) 100%);
+            position: absolute;
+            top: -45px;
+            left: 6px;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: plungerMotion 3s ease-in-out infinite;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes plungerMotion {
+            0%, 100% { top: -45px; }
+            50% { top: -15px; }
+        }
+
+        .plunger-top {
+            width: 34px;
+            height: 12px;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.8) 0%, 
+                rgba(220, 220, 220, 0.6) 100%);
+            position: absolute;
+            top: -8px;
+            left: -4px;
+            border-radius: 3px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .needle-enhanced {
+            width: 4px;
+            height: 70px;
+            background: linear-gradient(180deg, 
+                rgba(230, 230, 230, 0.9) 0%, 
+                rgba(180, 180, 180, 1) 100%);
+            position: absolute;
+            bottom: -65px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 2px 2px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .needle-tip {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 10px solid rgba(160, 160, 160, 1);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .genetic-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gene-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #feca57 0%, #ff6b9d 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(254, 202, 87, 0.8);
+            animation: geneFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes geneFlow {
+            0% { transform: translate(0, 0); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(-80px, 80px); opacity: 0; }
+        }
+
+        .gp1 { top: 15%; right: 20%; animation-delay: 0s; }
+        .gp2 { top: 18%; right: 18%; animation-delay: 0.5s; }
+        .gp3 { top: 20%; right: 22%; animation-delay: 1s; }
+
+        /* Card 4: Endless Possibilities - Enhanced */
+        #card4 {
+            background: linear-gradient(180deg, #003d5c 0%, #002a40 50%, #001a2e 100%);
+            position: relative;
+        }
+
+        .divider-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(0, 212, 170, 0.3) 0%, 
+                rgba(0, 212, 170, 0.6) 50%, 
+                rgba(0, 212, 170, 0.3) 100%);
+            box-shadow: 0 0 20px rgba(0, 212, 170, 0.5);
+        }
+
+        .scene-half {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+        }
+
+        .scene-aquarium {
+            left: 0;
+            background: radial-gradient(circle at 30% 50%, 
+                rgba(0, 100, 150, 0.3) 0%, 
+                rgba(0, 60, 100, 0.2) 50%, 
+                transparent 100%);
+        }
+
+        .scene-bioreactor {
+            right: 0;
+            background: radial-gradient(circle at 70% 50%, 
+                rgba(0, 150, 120, 0.3) 0%, 
+                rgba(0, 100, 80, 0.2) 50%, 
+                transparent 100%);
+        }
+
+        .aquarium-tank {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 65%;
+            background: linear-gradient(180deg, 
+                rgba(0, 180, 220, 0.2) 0%, 
+                rgba(0, 150, 200, 0.4) 50%, 
+                rgba(0, 120, 180, 0.5) 100%);
+            border: 4px solid rgba(100, 200, 255, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 40px rgba(0, 180, 255, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .water-shimmer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                transparent 30%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .aquarium-cell-enhanced {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background: radial-gradient(circle at 35% 35%, 
+                rgba(0, 255, 170, 0.9) 0%, 
+                rgba(0, 220, 150, 0.7) 40%, 
+                rgba(0, 180, 120, 0.5) 100%);
+            border-radius: 50%;
+            bottom: 22%;
+            left: 38%;
+            box-shadow: 
+                0 0 40px rgba(0, 255, 170, 0.7),
+                inset 0 0 20px rgba(0, 255, 170, 0.4);
+            animation: gentleSway 5s ease-in-out infinite;
+        }
+
+        @keyframes gentleSway {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(12px) scale(1.05); }
+        }
+
+        .substrate {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+            background: linear-gradient(180deg, 
+                rgba(139, 69, 19, 0.4) 0%, 
+                rgba(101, 67, 33, 0.6) 100%);
+        }
+
+        .fish-enhanced {
+            position: absolute;
+            width: 35px;
+            height: 18px;
+            background: linear-gradient(135deg, 
+                rgba(255, 165, 70, 0.9) 0%, 
+                rgba(255, 140, 50, 0.8) 100%);
+            border-radius: 50% 50% 50% 0;
+            top: 28%;
+            left: 18%;
+            animation: fishSwim 8s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 165, 70, 0.5);
+        }
+
+        @keyframes fishSwim {
+            0%, 100% { left: 18%; }
+            50% { left: 75%; }
+        }
+
+        .fish-tail {
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid rgba(255, 165, 70, 0.9);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .fish-eye {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            top: 35%;
+            right: 8px;
+        }
+
+        .bioreactor-container {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 75%;
+            height: 58%;
+            background: linear-gradient(180deg, 
+                rgba(0, 220, 160, 0.15) 0%, 
+                rgba(0, 180, 140, 0.3) 50%, 
+                rgba(0, 150, 120, 0.45) 100%);
+            border: 4px solid rgba(0, 255, 170, 0.7);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 
+                inset 0 0 40px rgba(0, 255, 170, 0.2),
+                0 10px 40px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(0, 255, 170, 0.3);
+        }
+
+        .reactor-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(0, 255, 170, 0.3) 0%, 
+                transparent 60%);
+            animation: reactorPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes reactorPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .reactor-cell-enhanced {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            background: radial-gradient(circle at 38% 38%, 
+                rgba(0, 255, 200, 1) 0%, 
+                rgba(0, 230, 180, 0.8) 30%, 
+                rgba(0, 200, 160, 0.6) 60%, 
+                rgba(0, 170, 140, 0.4) 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 50px rgba(0, 255, 200, 0.9),
+                0 0 30px rgba(0, 255, 200, 0.6),
+                inset 0 0 25px rgba(0, 255, 200, 0.5);
+            animation: productionPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes productionPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                box-shadow: 
+                    0 0 50px rgba(0, 255, 200, 0.9),
+                    0 0 30px rgba(0, 255, 200, 0.6);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.15); 
+                box-shadow: 
+                    0 0 70px rgba(0, 255, 200, 1),
+                    0 0 50px rgba(0, 255, 200, 0.8);
+            }
+        }
+
+        .pipe-system {
+            position: absolute;
+            width: 4px;
+            height: 30%;
+            background: linear-gradient(180deg, 
+                rgba(180, 180, 180, 0.6) 0%, 
+                rgba(140, 140, 140, 0.5) 100%);
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .pipe-horizontal {
+            position: absolute;
+            width: 35px;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgba(180, 180, 180, 0.6) 0%, 
+                rgba(140, 140, 140, 0.5) 100%);
+            top: 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .pipe-left { left: -35px; }
+        .pipe-right { right: -35px; }
+
+        .label-tag {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            color: #00ffc8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid rgba(0, 255, 200, 0.4);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        /* Card 5: Biology Meets Hardware - Enhanced */
+        #card5 {
+            background: radial-gradient(circle at 50% 50%, #1f3a4a 0%, #152a38 50%, #0a1520 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circuit-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(52, 152, 219, 0.5) 50%, 
+                transparent 100%);
+            height: 2px;
+            animation: circuitFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes circuitFlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .cl1 { width: 60%; top: 20%; left: 20%; animation-delay: 0s; }
+        .cl2 { width: 50%; top: 80%; left: 25%; animation-delay: 1s; }
+        .cl3 { width: 2px; height: 40%; top: 30%; left: 30%; animation-delay: 2s; }
+
+        .hybrid-cell-enhanced {
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle at 38% 38%,
+                rgba(52, 200, 255, 0.8) 0%,
+                rgba(41, 170, 255, 0.6) 25%,
+                rgba(30, 140, 220, 0.4) 50%,
+                rgba(20, 100, 180, 0.2) 75%,
+                transparent 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                0 0 90px rgba(52, 152, 219, 0.7),
+                0 0 50px rgba(52, 152, 219, 0.5),
+                inset 0 0 70px rgba(52, 152, 219, 0.3);
+        }
+
+        .microchip-enhanced {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, 
+                #34495e 0%, 
+                #2c3e50 50%, 
+                #1a252f 100%);
+            border: 3px solid #4a5f7f;
+            border-radius: 6px;
+            box-shadow: 
+                0 0 40px rgba(52, 152, 219, 0.8),
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .chip-circuit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circuit-trace {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                #3498db 0%, 
+                #5dade2 50%, 
+                #3498db 100%);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 1);
+            animation: traceGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes traceGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .trace-h1 { width: 75%; height: 3px; top: 18%; left: 12%; }
+        .trace-h2 { width: 65%; height: 3px; top: 50%; left: 17%; animation-delay: 0.3s; }
+        .trace-h3 { width: 55%; height: 3px; bottom: 18%; left: 22%; animation-delay: 0.6s; }
+        .trace-v1 { width: 3px; height: 75%; top: 12%; left: 28%; animation-delay: 0.2s; }
+        .trace-v2 { width: 3px; height: 65%; top: 17%; right: 28%; animation-delay: 0.5s; }
+
+        .chip-contact {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #5dade2 0%, #3498db 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 1);
+        }
+
+        .contact1 { top: 18%; left: 12%; }
+        .contact2 { top: 18%; right: 12%; }
+        .contact3 { bottom: 18%; left: 22%; }
+        .contact4 { bottom: 18%; right: 22%; }
+        .contact5 { top: 50%; left: 17%; }
+
+        .antenna-enhanced {
+            position: absolute;
+            width: 5px;
+            height: 32px;
+            background: linear-gradient(180deg, 
+                #3498db 0%, 
+                rgba(52, 152, 219, 0.5) 100%);
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px 3px 0 0;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
+        }
+
+        .antenna-bulb {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #5dade2 0%, #3498db 100%);
+            border-radius: 50%;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 
+                0 0 20px rgba(52, 152, 219, 1),
+                0 0 40px rgba(52, 152, 219, 0.6);
+            animation: transmit 1.5s ease-in-out infinite;
+        }
+
+        @keyframes transmit {
+            0%, 100% { 
+                opacity: 1; 
+                box-shadow: 
+                    0 0 20px rgba(52, 152, 219, 1),
+                    0 0 40px rgba(52, 152, 219, 0.6);
+            }
+            50% { 
+                opacity: 0.5; 
+                box-shadow: 
+                    0 0 30px rgba(52, 152, 219, 1),
+                    0 0 60px rgba(52, 152, 219, 0.8);
+            }
+        }
+
+        .signal-wave {
+            position: absolute;
+            border: 3px solid rgba(52, 152, 219, 0.8);
+            border-radius: 50%;
+            animation: wavePropagate 2.5s ease-out infinite;
+        }
+
+        @keyframes wavePropagate {
+            0% {
+                width: 70px;
+                height: 70px;
+                top: 50%;
+                left: 50%;
+                margin-top: -35px;
+                margin-left: -35px;
+                opacity: 1;
+            }
+            100% {
+                width: 240px;
+                height: 240px;
+                top: 50%;
+                left: 50%;
+                margin-top: -120px;
+                margin-left: -120px;
+                opacity: 0;
+            }
+        }
+
+        .sw1 { animation-delay: 0s; }
+        .sw2 { animation-delay: 0.8s; }
+        .sw3 { animation-delay: 1.6s; }
+
+        .data-bits {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .data-bit {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #5dade2;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+            animation: bitTransmit 3s ease-in-out infinite;
+        }
+
+        @keyframes bitTransmit {
+            0% { transform: translate(0, 0); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(-100px, -100px); opacity: 0; }
+        }
+
+        .bit1 { top: 50%; left: 50%; animation-delay: 0s; }
+        .bit2 { top: 50%; left: 50%; animation-delay: 0.5s; }
+        .bit3 { top: 50%; left: 50%; animation-delay: 1s; }
+
+        /* Card 6: Sustainable by Nature - Enhanced */
+        #card6 {
+            background: radial-gradient(circle at 50% 40%, #1a5d3e 0%, #0f3d28 40%, #0a1f14 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nature-backdrop {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(34, 197, 94, 0.1) 0%, 
+                transparent 60%);
+        }
+
+        .sun-enhanced {
+            position: absolute;
+            top: 12%;
+            right: 18%;
+            width: 90px;
+            height: 90px;
+        }
+
+        .sun-core-enhanced {
+            width: 55px;
+            height: 55px;
+            background: radial-gradient(circle, 
+                #fff9e6 0%, 
+                #ffd700 30%, 
+                #ffa500 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 50px rgba(255, 215, 0, 0.8),
+                0 0 30px rgba(255, 215, 0, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: sunPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes sunPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 50px rgba(255, 215, 0, 0.8),
+                    0 0 30px rgba(255, 215, 0, 0.6);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 70px rgba(255, 215, 0, 1),
+                    0 0 50px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .sun-ray {
+            position: absolute;
+            width: 4px;
+            height: 35px;
+            background: linear-gradient(180deg, 
+                rgba(255, 215, 0, 0.9) 0%, 
+                rgba(255, 215, 0, 0.4) 50%, 
+                transparent 100%);
+            top: 50%;
+            left: 50%;
+            transform-origin: center -17px;
+            animation: raysRotate 8s linear infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes raysRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .sr1 { transform: translate(-50%, -50%) rotate(0deg); }
+        .sr2 { transform: translate(-50%, -50%) rotate(45deg); }
+        .sr3 { transform: translate(-50%, -50%) rotate(90deg); }
+        .sr4 { transform: translate(-50%, -50%) rotate(135deg); }
+        .sr5 { transform: translate(-50%, -50%) rotate(180deg); }
+        .sr6 { transform: translate(-50%, -50%) rotate(225deg); }
+        .sr7 { transform: translate(-50%, -50%) rotate(270deg); }
+        .sr8 { transform: translate(-50%, -50%) rotate(315deg); }
+
+        .photosynthesis-arrow {
+            position: absolute;
+            width: 3px;
+            height: 85px;
+            background: linear-gradient(180deg, 
+                rgba(255, 215, 0, 0.8) 0%, 
+                rgba(154, 205, 50, 0.6) 50%, 
+                rgba(34, 197, 94, 0.8) 100%);
+            top: 28%;
+            right: 30%;
+            animation: energyTransfer 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.6));
+        }
+
+        @keyframes energyTransfer {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .arrow-head {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid rgba(34, 197, 94, 0.9);
+            filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.8));
+        }
+
+        .sustainable-cell-enhanced {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 38% 38%,
+                rgba(74, 222, 128, 0.9) 0%,
+                rgba(34, 197, 94, 0.7) 25%,
+                rgba(22, 163, 74, 0.5) 50%,
+                rgba(21, 128, 61, 0.3) 75%,
+                transparent 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                0 0 80px rgba(34, 197, 94, 0.6),
+                0 0 50px rgba(34, 197, 94, 0.4),
+                inset 0 0 60px rgba(34, 197, 94, 0.3),
+                inset -20px -20px 50px rgba(22, 163, 74, 0.4);
+            animation: photosynthesize 5s ease-in-out infinite;
+        }
+
+        @keyframes photosynthesize {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 
+                    0 0 80px rgba(34, 197, 94, 0.6),
+                    0 0 50px rgba(34, 197, 94, 0.4);
+            }
+            50% { 
+                transform: scale(1.08); 
+                box-shadow: 
+                    0 0 100px rgba(34, 197, 94, 0.8),
+                    0 0 70px rgba(34, 197, 94, 0.6);
+            }
+        }
+
+        .chloroplast-enhanced {
+            position: absolute;
+            width: 32px;
+            height: 22px;
+            background: radial-gradient(ellipse, 
+                rgba(74, 222, 128, 0.9) 0%, 
+                rgba(34, 197, 94, 0.7) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+            animation: chloroplastFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes chloroplastFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(18px, -25px) rotate(120deg); }
+            66% { transform: translate(-25px, 18px) rotate(240deg); }
+        }
+
+        .chl1 { top: 28%; left: 38%; animation-delay: 0s; }
+        .chl2 { top: 52%; left: 58%; width: 28px; height: 20px; animation-delay: 2s; }
+        .chl3 { top: 62%; left: 28%; width: 30px; height: 24px; animation-delay: 4s; }
+
+        .leaf-enhanced {
+            position: absolute;
+            width: 28px;
+            height: 35px;
+            background: radial-gradient(ellipse at 50% 50%, 
+                rgba(74, 222, 128, 0.9), 
+                rgba(34, 197, 94, 0.7));
+            border-radius: 0 100% 100% 0;
+            box-shadow: 
+                0 0 20px rgba(34, 197, 94, 0.5),
+                inset 0 0 10px rgba(74, 222, 128, 0.3);
+            animation: leafDrift 7s ease-in-out infinite;
+        }
+
+        @keyframes leafDrift {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-25px) rotate(15deg); opacity: 1; }
+        }
+
+        .lf1 { bottom: 18%; left: 22%; animation-delay: 0s; }
+        .lf2 { 
+            bottom: 28%; 
+            right: 28%; 
+            transform: scaleX(-1); 
+            animation-delay: 2.3s; 
+        }
+        .lf3 { top: 32%; left: 18%; animation-delay: 4.6s; }
+
+        .leaf-vein {
+            position: absolute;
+            width: 2px;
+            height: 80%;
+            background: linear-gradient(180deg, 
+                rgba(34, 197, 94, 0.6) 0%, 
+                transparent 100%);
+            top: 10%;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .recycle-symbol {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            opacity: 0.4;
+            filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.6));
+            animation: sustainRotate 8s linear infinite;
+        }
+
+        @keyframes sustainRotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .eco-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .eco-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: radial-gradient(circle, 
+                rgba(154, 205, 50, 0.8) 0%, 
+                rgba(34, 197, 94, 0.4) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(154, 205, 50, 0.6);
+            animation: ecoFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes ecoFloat {
+            0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+            50% { transform: translate(30px, -40px); opacity: 1; }
+        }
+
+        .ep1 { top: 60%; left: 25%; animation-delay: 0s; }
+        .ep2 { top: 45%; right: 30%; animation-delay: 2s; }
+        .ep3 { bottom: 30%; left: 35%; animation-delay: 4s; }
+
+        @media (max-width: 1200px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .card-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Valonia Ventricosa Biotechnology Platform</h1>
+        <p>Grant Application Visual Materials - Showcasing the transformative potential of nature's largest single-celled organism for sustainable pharmaceutical production, ocean monitoring, and global health innovation</p>
+    </div>
+
+    <div class="cards-container">
+        <!-- Card 1: The Giant Among Cells -->
+        <div class="card-wrapper">
+            <h3 class="card-title">The Giant Among Cells</h3>
+            <div class="card" id="card1">
+                <div class="ambient-particles">
+                    <div class="particle-bg p1"></div>
+                    <div class="particle-bg p2"></div>
+                    <div class="particle-bg p3"></div>
+                    <div class="particle-bg p4"></div>
+                    <div class="particle-bg p5"></div>
+                </div>
+                <div class="giant-cell-enhanced">
+                    <div class="cell-nucleus-enhanced n1"></div>
+                    <div class="cell-nucleus-enhanced n2"></div>
+                    <div class="cell-nucleus-enhanced n3"></div>
+                </div>
+                <div class="hand-container">
+                    <div class="hand-palm"></div>
+                    <div class="finger-realistic f1"></div>
+                    <div class="finger-realistic f2"></div>
+                    <div class="finger-realistic f3"></div>
+                    <div class="finger-realistic f4"></div>
+                    <div class="finger-realistic thumb-realistic"></div>
+                </div>
+                <div class="size-indicator-enhanced">4 cm</div>
+                <div class="scale-comparison">
+                    <div class="scale-item">
+                        <div class="scale-bar bar-small"></div>
+                        <span>10 μm Cell</span>
+                    </div>
+                    <div class="scale-item">
+                        <div class="scale-bar bar-large"></div>
+                        <span>40,000 μm Valonia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Biotechnology Platform -->
+        <div class="card-wrapper">
+            <h3 class="card-title">The Biotechnology Platform You Can Hold in Your Hand</h3>
+            <div class="card" id="card2">
+                <div class="tech-grid"></div>
+                <div class="platform-cell-enhanced">
+                    <div class="platform-core"></div>
+                    <div class="energy-rings">
+                        <div class="energy-ring er1"></div>
+                        <div class="energy-ring er2"></div>
+                        <div class="energy-ring er3"></div>
+                    </div>
+                </div>
+                <div class="tech-text">
+                    <h3>ACCESSIBLE</h3>
+                    <p>Scalable • Revolutionary</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Engineer on Demand -->
+        <div class="card-wrapper">
+            <h3 class="card-title">Engineer on Demand</h3>
+            <div class="card" id="card3">
+                <div class="dna-background">
+                    <div class="dna-strand-bg ds1"></div>
+                    <div class="dna-strand-bg ds2"></div>
+                    <div class="dna-strand-bg ds3"></div>
+                </div>
+                <div class="target-cell-enhanced">
+                    <div class="injection-point"></div>
+                </div>
+                <div class="syringe-enhanced">
+                    <div class="syringe-body">
+                        <div class="liquid-dna"></div>
+                        <div class="plunger-enhanced">
+                            <div class="plunger-top"></div>
+                        </div>
+                        <div class="needle-enhanced">
+                            <div class="needle-tip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="genetic-particles">
+                    <div class="gene-particle gp1"></div>
+                    <div class="gene-particle gp2"></div>
+                    <div class="gene-particle gp3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Endless Possibilities -->
+        <div class="card-wrapper">
+            <h3 class="card-title">Endless Possibilities</h3>
+            <div class="card" id="card4">
+                <div class="divider-line"></div>
+                <div class="scene-half scene-aquarium">
+                    <div class="aquarium-tank">
+                        <div class="water-shimmer"></div>
+                        <div class="substrate"></div>
+                        <div class="aquarium-cell-enhanced"></div>
+                        <div class="fish-enhanced">
+                            <div class="fish-tail"></div>
+                            <div class="fish-eye"></div>
+                        </div>
+                    </div>
+                    <div class="label-tag">Aquarium</div>
+                </div>
+                <div class="scene-half scene-bioreactor">
+                    <div class="bioreactor-container">
+                        <div class="reactor-glow"></div>
+                        <div class="pipe-system">
+                            <div class="pipe-horizontal pipe-left"></div>
+                            <div class="pipe-horizontal pipe-right"></div>
+                        </div>
+                        <div class="reactor-cell-enhanced"></div>
+                    </div>
+                    <div class="label-tag">Bioreactor</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Biology Meets Hardware -->
+        <div class="card-wrapper">
+            <h3 class="card-title">Biology Meets Hardware</h3>
+            <div class="card" id="card5">
+                <div class="circuit-pattern">
+                    <div class="circuit-line cl1"></div>
+                    <div class="circuit-line cl2"></div>
+                    <div class="circuit-line cl3"></div>
+                </div>
+                <div class="hybrid-cell-enhanced">
+                    <div class="microchip-enhanced">
+                        <div class="antenna-enhanced">
+                            <div class="antenna-bulb"></div>
+                        </div>
+                        <div class="chip-circuit">
+                            <div class="circuit-trace trace-h1"></div>
+                            <div class="circuit-trace trace-h2"></div>
+                            <div class="circuit-trace trace-h3"></div>
+                            <div class="circuit-trace trace-v1"></div>
+                            <div class="circuit-trace trace-v2"></div>
+                            <div class="chip-contact contact1"></div>
+                            <div class="chip-contact contact2"></div>
+                            <div class="chip-contact contact3"></div>
+                            <div class="chip-contact contact4"></div>
+                            <div class="chip-contact contact5"></div>
+                        </div>
+                    </div>
+                    <div class="signal-wave sw1"></div>
+                    <div class="signal-wave sw2"></div>
+                    <div class="signal-wave sw3"></div>
+                </div>
+                <div class="data-bits">
+                    <div class="data-bit bit1"></div>
+                    <div class="data-bit bit2"></div>
+                    <div class="data-bit bit3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Sustainable by Nature -->
+        <div class="card-wrapper">
+            <h3 class="card-title">Sustainable by Nature</h3>
+            <div class="card" id="card6">
+                <div class="nature-backdrop"></div>
+                <div class="sun-enhanced">
+                    <div class="sun-core-enhanced"></div>
+                    <div class="sun-ray sr1"></div>
+                    <div class="sun-ray sr2"></div>
+                    <div class="sun-ray sr3"></div>
+                    <div class="sun-ray sr4"></div>
+                    <div class="sun-ray sr5"></div>
+                    <div class="sun-ray sr6"></div>
+                    <div class="sun-ray sr7"></div>
+                    <div class="sun-ray sr8"></div>
+                </div>
+                <div class="photosynthesis-arrow">
+                    <div class="arrow-head"></div>
+                </div>
+                <div class="sustainable-cell-enhanced">
+                    <div class="chloroplast-enhanced chl1"></div>
+                    <div class="chloroplast-enhanced chl2"></div>
+                    <div class="chloroplast-enhanced chl3"></div>
+                </div>
+                <div class="leaf-enhanced lf1">
+                    <div class="leaf-vein"></div>
+                </div>
+                <div class="leaf-enhanced lf2">
+                    <div class="leaf-vein"></div>
+                </div>
+                <div class="leaf-enhanced lf3">
+                    <div class="leaf-vein"></div>
+                </div>
+                <div class="recycle-symbol">♻️</div>
+                <div class="eco-particles">
+                    <div class="eco-particle ep1"></div>
+                    <div class="eco-particle ep2"></div>
+                    <div class="eco-particle ep3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
